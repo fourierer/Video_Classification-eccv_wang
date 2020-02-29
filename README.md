@@ -103,7 +103,37 @@ for i in tqdm.tqdm(range(len(validation))):
 
 3.配置环境
 
+(1)根据detectron2/INSTALL.md安装[detectron2](https://github.com/facebookresearch/detectron2)
 
+这里采用的detectron2是facebook写的一个用于提取bounding box的一个库，由于比较新，所以对服务器上的环境要求比较高，值得注意的有以下几点(不会写轮子只能跟着别人要求走！)：
+
+1)Python >= 3.6，使用anaconda建立虚拟环境时可以解决；
+
+2)Pytorch >= 1.3，搭建pytorch和相应版本的torchvision(通过pytorch官网的指令)。在安装pytorch时，要注意：
+
+i).服务器的驱动版本(nvidia-smi查看)和cuda版本之间的兼容性(不兼容无法使用)；
+
+![cuda-driver_version](/Users/momo/Documents/video/cuda-driver_version.png)
+
+ii).cuda版本与pytorch版本兼容
+
+pytorch官网上可以看到。
+
+3)GCC >= 5.0
+
+如果服务器自带的GCC版本过低就需要升级，但是一般使用服务器的学生没有root权限，下面介绍没有root权限情况下升级GCC版本。
+
+
+
+
+
+
+
+(2)安装必要的package
+
+```shell
+pip install -r requirements.txt
+```
 
 
 

@@ -1,0 +1,12 @@
+cython
+cffi
+opencv-python
+scipy==1.2.1
+msgpack
+easydict
+matplotlib
+pyyaml
+tensorboardX
+tqdm
+torchnet
+numpy==1.16.2
