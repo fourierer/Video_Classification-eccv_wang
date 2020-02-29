@@ -19,7 +19,7 @@ train = train.replace({1: labels})
 validation = validation.replace({1: labels})
 
 
-# 将/home/sz/Video_Classification/eccv_wang/video_classification/data/something/raw/20bn-something-something-v1中的数据集分为训练集和测试集两部分，此处的数据是从超链接的数据源中移动得到
+# 将/home/sunzheng/Video_Classification/eccv_wang/video_classification/data/something/raw/20bn-something-something-v1中的数据集分为训练集和测试集两部分，此处的数据是从超链接的数据源中移动得到
 for i in tqdm.tqdm(range(len(train))):
     if not os.path.isdir('frames/train/{}'.format(train.loc[i][1])):
         os.makedirs('frames/train/{}'.format(train.loc[i][1]))
