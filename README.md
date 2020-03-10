@@ -287,7 +287,7 @@ print(torch.cuda.is_available())
 
 ```python
 import torch
-a = torch.tensor(5,3)
+a = torch.tensor([5,3])
 a = a.cuda()
 print(a)
 ```
