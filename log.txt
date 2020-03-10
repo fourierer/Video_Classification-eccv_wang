@@ -1,0 +1,6 @@
+train epoch 1/100. loss: 4.260 | P1: 0.119 | P5: 0.308
+train epoch 2/100. loss: 3.687 | P1: 0.198 | P5: 0.442
+train epoch 3/100. loss: 3.490 | P1: 0.225 | P5: 0.483
+train epoch 4/100. loss: 3.397 | P1: 0.236 | P5: 0.500
+train epoch 5/100. loss: 3.323 | P1: 0.252 | P5: 0.515
+valid epoch 5/100. loss: 3.818 | P1: 0.175 | P5: 0.409

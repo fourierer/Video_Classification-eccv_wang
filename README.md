@@ -266,3 +266,69 @@ print ('Annotations created!')
 
 
 2.提取bounding box
+
+提取的box将保存在data/something/bbox中，可以将demo/extract_box.py中73～77行注释取消，只提取部分frame的box，以加快速度：
+
+```shell
+cd detectron2
+python demo/extract_box.py
+```
+
+注意如果这一步如果报错：RuntimeError: CUDA error: no kernel image is available for execution on the device
+
+说明cuda无法使用，用下面两段代码验证：
+
+```python
+import torch
+print(torch.cuda.is_available())
+```
+
+如果输出True，说明CUDA安装正确并且能被Pytorch检测到，并没有说明是否正常使用，要想看Pytorch能不能调用cuda加速，还需要简单地测试：
+
+```python
+import torch
+a = torch.tensor(5,3)
+a = a.cuda()
+print(a)
+```
+
+此时一般会报同样的错误，原因在于显卡算力和CUDA不匹配。要么更换显卡提高显卡算力，要么降低CUDA的版本。但是由于使用detectron2库对pytorch版本要求很高，所以CUDA版本没办法降低，这里建议使用高算力的显卡～～
+
+
+
+3.提取i3d的inference result
+
+提取的feature将保存在data/something/feats中，如果需要去掉non local block，可以将extract_feat.py第90行注释取消：
+
+```shell
+python extract_feat.py
+```
+
+当未下载i3d pertained weight时，应首先下载权重：
+
+```shell
+wget https://dl.fbaipublicfiles.com/video-nonlocal/i3d_baseline_32x2_IN_pretrain_400k.pkl -P pretrained/
+wget https://dl.fbaipublicfiles.com/video-nonlocal/i3d_nonlocal_32x2_IN_pretrain_400k.pkl -P pretrained/
+
+python -m utils.convert_weights pretrained/i3d_baseline_32x2_IN_pretrain_400k.pkl pretrained/i3d_r50_kinetics.pth
+python -m utils.convert_weights pretrained/i3d_nonlocal_32x2_IN_pretrain_400k.pkl pretrained/i3d_r50_nl_kinetics.pth
+```
+
+
+
+**5.训练**
+
+不同的GCN模型可从models/gcn_model.py 第100, 101, 102行进行调整：
+
+```python
+python main.py
+
+# 从保存的第5 epoch权重开始训练
+python main.py --load_state 5
+```
+
+
+
+
+
+非常抱歉，我复现的结果测试集上top-5精确度只有约17%，并没有文章中的45%，不知道哪里出了问题，还希望各位大佬可以多多指教！
