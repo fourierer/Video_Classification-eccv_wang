@@ -292,6 +292,16 @@ a = a.cuda()
 print(a)
 ```
 
+或者：
+
+```python
+import torch
+a = torch.Tensor(5,3)
+device = torch.device('cuda:0')
+a = a.to(device)
+print(a)
+```
+
 此时一般会报同样的错误，原因在于显卡算力和CUDA不匹配。要么更换显卡提高显卡算力，要么降低CUDA的版本。但是由于使用detectron2库对pytorch版本要求很高，所以CUDA版本没办法降低，这里建议使用高算力的显卡～～
 
 
@@ -331,4 +341,5 @@ python main.py --load_state 5
 
 
 
-非常抱歉，我复现的结果测试集上top-5精确度只有约17%，并没有文章中的45%，不知道哪里出了问题，还希望各位大佬可以多多指教！
+非常抱歉，复现的结果测试集上top-5精确度只有约17%，并没有文章中的45%，不知道哪里出了问题，还希望各位大佬可以多多指教！
+
