@@ -1,6 +1,7 @@
 # Video_Classification-eccv_wang
 Reproduce the results of Videos as Space-Time Region Graphs's experiments via pytorch.
 
+非常抱歉，复现的结果在测试集上top-5精确度只有约17%，并没有文章中的45%，不知道哪里出了问题，还希望各位大佬可以多多指教！
 
 
 ##### 代码复现：(复现I3D和GCN组合，即文章中table 4中的最后一行，上面其余几行可以注释相应的代码复现)
@@ -336,10 +337,4 @@ python main.py
 # 从保存的第5 epoch权重开始训练
 python main.py --load_state 5
 ```
-
-
-
-
-
-非常抱歉，复现的结果测试集上top-5精确度只有约17%，并没有文章中的45%，不知道哪里出了问题，还希望各位大佬可以多多指教！
 
